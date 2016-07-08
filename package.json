@@ -1,0 +1,22 @@
+{
+  "name": "tspscreader",
+  "version": "1.0.0",
+  "description": "tspsc reader",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[B\u001b[Ahttps://github.com/naveen09/tspscreader.git"
+  },
+  "keywords": [
+    "tspsc"
+  ],
+  "author": "Naveen Aechan",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "selenium-webdriver": "^2.53.3"
+  }
+}
