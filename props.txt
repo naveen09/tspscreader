@@ -1,0 +1,4 @@
+	{
+	"WEBSITE" : "http://tspsc.gov.in",
+	"FILE_PATH" : "tspsc-export.json"
+	}
