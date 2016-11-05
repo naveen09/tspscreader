@@ -1,4 +1,5 @@
 	{
-	"WEBSITE" : "http://tspsc.gov.in",
+	"WEBSITE" : "http://tspsc.gov.in/TSPSCWEB0508/",
+	"KEYS_WEBSITE" : "http://tspsc.gov.in/TSPSCWEB0508/keyscu.jsp",
 	"FILE_PATH" : "tspsc-export.json"
 	}

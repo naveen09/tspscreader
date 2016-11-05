@@ -6,10 +6,12 @@ var driver = new webdriver.Builder().forBrowser('firefox').build();
 var jsonData;
 var FILE_PATH;
 var WEBSITE;
+var KEYS_WEBSITE;
 fs.readFile('props.txt', 'utf8', function(err, props) {
     if (err) throw err;
     var propsData = JSON.parse(props);
     WEBSITE = propsData["WEBSITE"];
+    KEYS_WEBSITE = propsData["KEYS_WEBSITE"];
     FILE_PATH = propsData["FILE_PATH"];
     log('Website: '+WEBSITE);
     log('File Path: '+FILE_PATH);
@@ -35,7 +37,7 @@ function checkPageLoad(title) {
 }
 
 function readNotifications() {
-    driver.findElement(By.className('arrow-list')).then(readNotificationsContainer);
+    driver.findElement(By.className('arrow-list ')).then(readNotificationsContainer);
 }
 
 function readNotificationsContainer(container) {
@@ -68,11 +70,12 @@ function readNotificationsList(list) {
 
 function readKeys() {
     log('--------- Reading Keys Section --------- ');
-    driver.findElement(By.className('boxxx blue')).then(readKeysContainer);
+    driver.get(KEYS_WEBSITE);
+    driver.findElement(By.xpath("//*[contains(@class, 'arrow-list')]/ul")).then(readKeysContainer);
 }
 
 function readKeysContainer(container) {
-    container.findElements(By.tagName('h5')).then(readKeysList);
+    container.findElements(By.tagName('li')).then(readKeysList);
 }
 
 function readKeysList(list) {
@@ -83,6 +86,9 @@ function readKeysList(list) {
                 a.getText().then(function(text) {
                     var obj = {};
                     var txt = format(text);
+                    if(ref.indexOf("http") == -1){
+                        txt = WEBSITE+txt;
+                    }
                     var url = ref;
                     var key = index-- + "::" + txt;
                     jsonData.keys[key] = url;
@@ -105,5 +111,5 @@ function log(text) {
 }
 
 function format(text) {
-    return text.replace(/\//g, '-').replace(/\./g, "").replace(/\\n/g,'');
+    return text.replace(/\//g, '-').replace(/\./g, "").replace(/\\n/g,'').replace('/\\n','');
 }
